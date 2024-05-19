@@ -1,1 +1,3 @@
+Dear %receiver%
 I wish you more money and great life.
+Your %sender%

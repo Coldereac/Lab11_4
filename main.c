@@ -14,16 +14,23 @@ int main(void) {
         exit(1);
     }
     char temp[100];
-    puts("Input receiver");
-    gets(temp);
-    fprintf(fout, "Dear %s,\n", temp);
     while (!feof(fin)) {
         fgets(temp, 99, fin);
+        char *ch;
+        if ((ch = strstr(temp, "%receiver%")) != NULL) {
+            puts("Input receiver");
+            char receiver[50];
+            fgets(receiver, 49, stdin);
+            strcpy(ch, receiver);
+        }
+        if ((ch = strstr(temp, "%sender%")) != NULL) {
+            puts("Input sender");
+            char sender[50];
+            fgets(sender, 49, stdin);
+            strcpy(ch, sender);
+        }
         fputs(temp, fout);
     }
-    puts("Input sender");
-    gets(temp);
-    fprintf(fout, "\nYour %s", temp);
     fclose(fin);
     fclose(fout);
     return 0;
